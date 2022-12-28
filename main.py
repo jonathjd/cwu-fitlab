@@ -10,12 +10,9 @@ st.set_page_config(
     layout='wide'
 )
 
-with open(f'style.css') as f:
-    st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
-
 with st.sidebar:
     st.markdown(
-        '<img src="http://localhost:8501/media/aaa5687cef9afefd26bbda350adcf202e26da34d29f33f9ab4f01c13.png" alt="0" style="width: 304px;margin-top: -64px;padding-bottom: 30px;">',
+        '<img src="https://github.com/jonathjd/cwu-fitlab/blob/main/img/cwu-long.png?raw=true" alt="0" style="width: 304px;margin-top: -64px;padding-bottom: 30px;">',
         unsafe_allow_html=True
     )
     st.subheader("Hours of Operation")
