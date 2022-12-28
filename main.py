@@ -3,13 +3,21 @@ from PIL import Image
 from streamlit_extras.colored_header import colored_header
 from markdownlit import mdlit
 from annotated_text import annotated_text
+from streamlit_extras.app_logo import add_logo
 
 st.set_page_config(
     page_title="CWU Fitlab",
     layout='wide'
 )
 
+with open(f'style.css') as f:
+    st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
+
 with st.sidebar:
+    st.markdown(
+        '<img src="http://localhost:8501/media/aaa5687cef9afefd26bbda350adcf202e26da34d29f33f9ab4f01c13.png" alt="0" style="width: 304px;margin-top: -64px;padding-bottom: 30px;">',
+        unsafe_allow_html=True
+    )
     st.subheader("Hours of Operation")
     st.write(
         """
@@ -25,7 +33,7 @@ with st.sidebar:
         """
     )
     mdlit (
-        """Check out our @(calendar)(https://calendly.com/cwu-fitlab/assessment) to schedule an assessment or come to [red]Heath 
+        """Check out our [calendar](https://calendly.com/cwu-fitlab/assessment) to schedule an assessment or come to [red]Heath 
         Sciences 117[/red] during open hours! 
         If you have any further questions feel free to email **[blue]fitlab.cwu.edu[/blue]**.
         """
@@ -34,10 +42,11 @@ with st.sidebar:
 
 # -- Header --
 st.title("Welcome to CWU Fitlab!")
-
-# col_left, col_right = st.columns(2)
 fitlab_img = Image.open('img/fitlab-img.png')
-st.image(fitlab_img, caption="Students during Fitlab")
+st.markdown(
+    '<img src="https://github.com/jonathjd/cwu-fitlab/blob/main/img/fitlab-img.png?raw=true" alt="0" style="max-width: 100%;padding-left: 75px;">',
+    unsafe_allow_html=True
+)
 colored_header(
     label="Overview",
     description="Learn more about Fitlab",
