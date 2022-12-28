@@ -3,7 +3,6 @@ from PIL import Image
 from streamlit_extras.colored_header import colored_header
 from markdownlit import mdlit
 from annotated_text import annotated_text
-from streamlit_extras.app_logo import add_logo
 
 st.set_page_config(
     page_title="CWU Fitlab",
