@@ -26,3 +26,4 @@ streamlit-keyup==0.2.0
 streamlit-toggle-switch==1.0.2
 streamlit-vertical-slider==1.0.2
 webencodings==0.5.1
+plotly-express
