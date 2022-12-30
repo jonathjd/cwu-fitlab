@@ -8,4 +8,5 @@ dependencies:
   - streamlit
   - seaborn
   - plotly
+  - streamlit_extras
 prefix: /Users/jdickinson/opt/miniconda3/envs/fitlab
