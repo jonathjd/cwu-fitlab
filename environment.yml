@@ -1,0 +1,11 @@
+name: fitlab
+channels:
+  - defaults
+dependencies:
+  - python=3.8
+  - numpy
+  - pandas
+  - streamlit
+  - seaborn
+  - plotly
+prefix: /Users/jdickinson/opt/miniconda3/envs/fitlab
