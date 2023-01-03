@@ -35,11 +35,13 @@ with st.sidebar:
     )
 
 # -- Header --
-st.title("Welcome to CWU Fitlab!")
-st.markdown(
-    '<img src="https://github.com/jonathjd/cwu-fitlab/blob/main/img/fitlab-img.png?raw=true" alt="0" style="max-width: 100%;padding-left: 75px;">',
-    unsafe_allow_html=True
-)
+l_blank, mid, r_blank = st.columns([1, 4, 1])
+with mid:
+    st.title("Welcome to CWU Fitlab!")
+    st.image(
+        'https://github.com/jonathjd/cwu-fitlab/blob/main/img/fitlab-img.png?raw=true', 
+        "Fitlab Students"
+    )
 colored_header(
     label="Overview",
     description="Learn more about Fitlab",
