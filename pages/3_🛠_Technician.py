@@ -8,9 +8,6 @@ st.set_page_config(
     layout='wide'
 )
 
-
-
-
 def check_password():
     """Returns `True` if the user had the correct password."""
 
