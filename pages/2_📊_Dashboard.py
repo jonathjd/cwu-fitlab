@@ -101,7 +101,7 @@ with st.sidebar:
     mdlit (
         """Check out our [calendar](https://calendly.com/cwu-fitlab/assessment) to schedule an assessment or come to [red]Heath 
         Sciences 117[/red] during open hours! 
-        If you have any further questions feel free to email **[blue]fitlab.cwu.edu[/blue]**.
+        If you have any further questions feel free to email **[blue]fitlab@cwu.edu[/blue]**.
         """
     )
     st.subheader("Hours of Operation")
@@ -119,6 +119,7 @@ with st.sidebar:
         """
     )
 
+# cols to center title
 l_0, mid, r_0 = st.columns([1, 2, 1])
 with mid:
     st.title('Client Dashboard')
