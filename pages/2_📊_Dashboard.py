@@ -95,7 +95,7 @@ def plot_vo2_histogram(age, vo2max, gender):
 
 with st.sidebar:
     st.markdown(
-        '<img src="https://github.com/jonathjd/cwu-fitlab/blob/main/img/cwu-long.png?raw=true" alt="0" style="width: 304px;margin-top: -300px;">',
+        '<img src="https://github.com/jonathjd/cwu-fitlab/blob/main/img/cwu-long.png?raw=true" alt="0" style="width: 304px;margin-top: -400px;">',
         unsafe_allow_html=True
     )
     mdlit (
