@@ -18,13 +18,13 @@ favicon==0.7.0
 fonttools==4.38.0
 gitdb==4.0.10
 GitPython==3.1.30
-google-api-core==2.11.0
+google-api-core
 google-auth==2.15.0
 google-cloud-core==2.3.2
-google-cloud-firestore==2.7.3
-googleapis-common-protos==1.57.0
+google-cloud-firestore
+googleapis-common-protos
 grpcio==1.51.1
-grpcio-status==1.51.1
+grpcio-status
 htbuilder==0.6.1
 idna==3.4
 importlib-metadata==6.0.0
@@ -44,7 +44,7 @@ patsy==0.5.3
 Pillow==9.4.0
 plotly==5.11.0
 plotly-express==0.4.1
-proto-plus==1.22.1
+proto-plus
 protobuf
 pyarrow==10.0.1
 pyasn1==0.4.8
@@ -70,7 +70,7 @@ smmap==5.0.0
 soupsieve==2.3.2.post1
 st-annotated-text==3.0.0
 statsmodels==0.13.5
-streamlit==1.16.0
+streamlit
 streamlit-authenticator==0.2.1
 streamlit-camera-input-live==0.2.0
 streamlit-card==0.0.4
