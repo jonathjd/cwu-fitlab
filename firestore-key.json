@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "cwu-fitlab",
+  "private_key_id": "6df8a01fda0e4085ef0c53f8e18c71a225ab1e59",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDacrWriM7thJc/\nQGCQe3tc9/wYsemVjylMltNqRHENLrScX0k1QXN7cym25cujf+ujGPOYKnw5gvnb\n6blAko8OIBTjdlVLn3KwRWs9k6a6m/MNAB9u7RvoJpGtWsEotSCmndEyjOXUaCdS\nRr/g56FXirIjCgTIzzEIbOznz5qJLqoq60nkMMmY/D61KCzET0+NMOPE4De1ffjx\n9xH8CW5cqjz57pDDYtFd0nBhjkqrEwcWdirN968NMyDzybwyrkoscEGx7u4pcu57\neKDPxhgtWmFKlWoZ1BsjBfBx/kbDXZwSgHwGgFm1TRREFABowGViQN57ijKomsfl\n3rwopG29AgMBAAECggEADSyq4TgEhtWey41F5aDU3VQFa7XbKQ5zxq83++o5yTo+\nYUnr397dKJ5W7zVntSojW3hHRK+XQ16vVACCEC9mmkr8B4Xc+g0ZPSFKqPGNNibu\nnyOZQbbiHnupAIP/L0XRPMs60SonOEq5yGAE9Xryw5VVTgCuLjA0vFXZadee8dP2\nnQVDAmY1eJmF3A6l4Dr6jmwgghTzdUTEpIgBRoqxTyZYwxweOTqkgbK/8qnPjSLT\nMtRpPX1AEbkmgKmrCa6uAzQJSYqQdTzGg46AcYymVMyChhRAERYsJ23DfvUjDRCc\n+59UzeutzSdkXoLypDXXxGcb75ygWyd0V5G3mW1w/wKBgQDzcNnvThz/R1wlXRzb\nYWWH7tT+QuURx+4mSwQQChN/zNwNeIGQprjzfGZOWDNfQmTD6QGQbJHRV68AjZMK\nwGqDi0k0dnP1/MR/BSCS6/bZZ+j0fvZ4QaqTEow6m+ljEKnIqBF9Dqwi2okg9N7/\ne/+U1Mgc/XIoIIE1nGwqn95rfwKBgQDlt8bNeevFeTtrAzqBrf1zdR8dfLR7gZO2\n+fD62ZPAZDzyTTJ+CHbYg9jGEeuZk5kojCQO38ulnuXAW9brQzIlZPJMP2iTNllo\n3eBcYwKVHKHy1FCIP7Zr0YZxOz4Mt1rtVy1Ckhww14OyrRHCYUYcaevktnBjaLtE\nj/ovI/10wwKBgHnZO4w3OfZgnnOpNn9sMainV37otsV+n+oU1DS/BmGKhX5MmfVw\nLdTZqE+AgD4m+k7A+uJyJU52KAcL1dSk2Ot8tSiIPaSbXzMAuvwvFYBeLVDrl6w7\nmghBWWUgkuHd/k2MKizBQlGztr2DM3cHdrblBkDUbuY81s+hutZe7LI7AoGBANtU\nHWdgSkFQX+/rtDfO1Ngg8mVoBLaLYGrqty/6/3xI+HvsQxJcqIRPVnC++XC3oRs6\nus7M1Ja8YObJiSk1DjLv7/vm6sTrtnBOsAHlsriGDwZXutBr7JODCNch1juz8Qf9\nHUSbVnk3vBGj9vndgGBurYDAxAvWGj77LMdHmJ6bAoGBAIVCKTtlFkqcclYGnPYl\nv9umeSxTWihMadb3hQ9kfi4WiwWugJjKdkDofIxc/0Gz3eNWNs0XSklc+sU3T8GH\nZZ4vfZ7iheUhyh9OKkIkpdCsSwesDo/b7wfoUVQxA/j9k9ICmpf+tR2o8/auB06r\nkKKaV8aXOcILhEEZC3LzkQQV\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-295ke@cwu-fitlab.iam.gserviceaccount.com",
+  "client_id": "104895369775772773850",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-295ke%40cwu-fitlab.iam.gserviceaccount.com"
+}

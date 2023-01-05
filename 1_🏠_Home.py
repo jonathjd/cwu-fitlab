@@ -10,13 +10,13 @@ st.set_page_config(
 
 with st.sidebar:
     st.markdown(
-        '<img src="https://github.com/jonathjd/cwu-fitlab/blob/main/img/cwu-long.png?raw=true" alt="0" style="width: 304px;margin-top: -300px;">',
+        '<img src="https://github.com/jonathjd/cwu-fitlab/blob/main/img/cwu-long.png?raw=true" alt="0" style="width: 304px;margin-top: -400px;">',
         unsafe_allow_html=True
     )
     mdlit (
         """Check out our [calendar](https://calendly.com/cwu-fitlab/assessment) to schedule an assessment or come to [red]Heath 
         Sciences 117[/red] during open hours! 
-        If you have any further questions feel free to email **[blue]fitlab.cwu.edu[/blue]**.
+        If you have any further questions feel free to email **[blue]fitlab@cwu.edu[/blue]**.
         """
     )
     st.subheader("Hours of Operation")
