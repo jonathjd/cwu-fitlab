@@ -9,8 +9,20 @@ st.set_page_config(
     layout='wide'
 )
 
-df = pd.read_csv('https://raw.githubusercontent.com/jonathjd/cwu-fitlab/main/data/processed/nhanes_merged.csv')
-df_vo2 = df[df['CVDESVO2'].notna()]
+# fetches data from github
+@st.cache
+def fetch_data(url):
+    df = pd.read_csv(url)
+    return df
+
+# subsets data
+@st.cache
+def subset_data(df):
+    df_vo2 = df[df['CVDESVO2'].notna()]
+    return df_vo2
+
+df = fetch_data('https://raw.githubusercontent.com/jonathjd/cwu-fitlab/main/data/processed/nhanes_merged.csv')
+df_vo2 = subset_data(df)
 
 def plot_vo2_histogram(age, vo2max, gender):
     line_placement = vo2max
