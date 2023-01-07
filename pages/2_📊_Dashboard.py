@@ -24,6 +24,7 @@ def subset_data(df):
 df = fetch_data('https://raw.githubusercontent.com/jonathjd/cwu-fitlab/main/data/processed/nhanes_merged.csv')
 df_vo2 = subset_data(df)
 
+## Helper Methods ##
 def plot_vo2_histogram(age, vo2max, gender):
     line_placement = vo2max
     if gender == "Male":
@@ -134,6 +135,7 @@ st.markdown(
     """
 )
 
+## VO2 ##
 l_hist, r_hist = st.columns([1.2,3])
 with l_hist:
     st.subheader('Normative values for VO2max')
@@ -145,6 +147,7 @@ with l_hist:
     c_age = st.slider(label="Enter age", 
         min_value=18, max_value=80, value=25
         )
-
 with r_hist:
     plot_vo2_histogram(c_age, c_vo2, c_gender)
+
+## BF% ##
