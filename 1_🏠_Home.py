@@ -14,7 +14,7 @@ with st.sidebar:
         unsafe_allow_html=True
     )
     mdlit (
-        """Check out our [calendar](https://calendly.com/cwu-fitlab/assessment) to schedule an assessment or come to [red]Heath 
+        """Check out our [calendar](https://calendly.com/cwu-fitlab) to schedule an assessment or come to [red]Heath 
         Sciences 117[/red] during open hours! 
         If you have any further questions feel free to email **[blue]fitlab@cwu.edu[/blue]**.
         """
