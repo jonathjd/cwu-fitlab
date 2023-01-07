@@ -52,8 +52,6 @@ st.write(
     '''
     - CWU Fit Lab is a **comprehensive fitness assessment** experience provided by trained CWU students pursuing a degree in Exercise Science.   
     - Cost: These assessments are free of charge and available to anyone 18 years of age and older (community members, students, faculty, etc.).  
-        
-    Please note that proof of COVID-19 vaccination is required at the time of scheduling
     '''
 )
 
