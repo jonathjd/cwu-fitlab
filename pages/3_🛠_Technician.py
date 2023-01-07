@@ -8,6 +8,12 @@ st.set_page_config(
     layout='wide'
 )
 
+with st.sidebar:
+    st.markdown(
+        '<img src="https://github.com/jonathjd/cwu-fitlab/blob/main/img/cwu-long.png?raw=true" alt="0" style="width: 304px;margin-top: -400px;">',
+        unsafe_allow_html=True
+    )
+
 def check_password():
     """Returns `True` if the user had the correct password."""
 
@@ -37,11 +43,6 @@ def check_password():
         return True
 
 if check_password():
-    with st.sidebar:
-        st.markdown(
-            '<img src="https://github.com/jonathjd/cwu-fitlab/blob/main/img/cwu-long.png?raw=true" alt="0" style="width: 304px;margin-top: -400px;">',
-            unsafe_allow_html=True
-        )
     st.title("Welcome Technician!")
     with st.expander("Input client data"):
         with st.form("Data"):
