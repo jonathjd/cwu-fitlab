@@ -70,7 +70,7 @@ smmap==5.0.0
 soupsieve==2.3.2.post1
 st-annotated-text==3.0.0
 statsmodels==0.13.5
-streamlit
+streamlit==1.16.0
 streamlit-authenticator==0.2.1
 streamlit-camera-input-live==0.2.0
 streamlit-card==0.0.4
