@@ -19,6 +19,7 @@ def fetch_data(url):
 @st.cache
 def subset_data(df):
     df_vo2 = df[df['CVDESVO2'].notna()]
+    df_vo2 = df_vo2[df_vo2['CVDESVO2'] < 90]
     return df_vo2
 
 df = fetch_data('https://raw.githubusercontent.com/jonathjd/cwu-fitlab/main/data/processed/nhanes_merged.csv')
@@ -39,6 +40,23 @@ def plot_vo2_histogram(age, vo2max, gender):
         template="simple_white",
         color_discrete_sequence = ['grey'],
     )
+
+        male_mean_line = men_df['CVDESVO2'].mean() # vo2 mean male
+        fig.add_vline(
+            type="line",
+            line_color="red",
+            line_width=4,
+            opacity=1,
+            line_dash="dot",
+            x=male_mean_line
+        )
+        fig.add_annotation(
+            text="Avg Male VO2max",
+            x=male_mean_line,
+            y=1050,
+            arrowhead=2,
+            showarrow=True
+        )
         fig.add_vline(
             type="line",
             line_color="black",
@@ -47,6 +65,14 @@ def plot_vo2_histogram(age, vo2max, gender):
             line_dash="dot",
             x=line_placement
         )
+        fig.add_annotation(
+            text="You",
+            x=line_placement,
+            y=1050,
+            arrowhead=2,
+            showarrow=True
+        )
+
     if gender == "Female":
         fem_df = df_vo2[df_vo2['RIAGENDR'] == 2]
         fig = px.histogram(
@@ -59,6 +85,22 @@ def plot_vo2_histogram(age, vo2max, gender):
         template="simple_white",
         color_discrete_sequence = ['grey'],
     )
+        fem_mean_line = fem_df['CVDESVO2'].mean() # vo2 mean female
+        fig.add_vline(
+            type="line",
+            line_color="red",
+            line_width=4,
+            opacity=1,
+            line_dash="dot",
+            x=fem_mean_line
+        )
+        fig.add_annotation(
+            text="Avg female VO2max",
+            x=fem_mean_line,
+            y=1050,
+            arrowhead=2,
+            showarrow=True
+        )
         fig.add_vline(
             type="line",
             line_color="black",
@@ -66,6 +108,13 @@ def plot_vo2_histogram(age, vo2max, gender):
             opacity=1,
             line_dash="dot",
             x=line_placement
+        )
+        fig.add_annotation(
+            text="You",
+            x=line_placement,
+            y=1050,
+            arrowhead=2,
+            showarrow=True
         )
     if gender == "Both":
         fig = px.histogram(
@@ -78,6 +127,22 @@ def plot_vo2_histogram(age, vo2max, gender):
         template="simple_white",
         color_discrete_sequence = ['grey'],
     )
+        mean_line = df_vo2['CVDESVO2'].mean() # vo2 mean
+        fig.add_vline(
+            type="line",
+            line_color="red",
+            line_width=4,
+            opacity=1,
+            line_dash="dot",
+            x=mean_line
+        )
+        fig.add_annotation(
+            text="Avg VO2max",
+            x=mean_line,
+            y=2050,
+            arrowhead=2,
+            showarrow=True
+        )
         fig.add_vline(
             type="line",
             line_color="black",
@@ -86,6 +151,13 @@ def plot_vo2_histogram(age, vo2max, gender):
             line_dash="dot",
             x=line_placement
         )
+        fig.add_annotation(
+            text="You",
+            x=line_placement,
+            y=1050,
+            arrowhead=2,
+            showarrow=True
+        )
     fig.update_layout(
     font=dict(
         size=18,  # Set the font size here
@@ -93,6 +165,9 @@ def plot_vo2_histogram(age, vo2max, gender):
 )
 
     st.plotly_chart(fig, use_container_width=True)
+
+def describe_vo2(line_placement):
+    pass
 
 with st.sidebar:
     st.markdown(
