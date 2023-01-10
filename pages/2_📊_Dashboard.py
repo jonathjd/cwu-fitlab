@@ -109,7 +109,7 @@ with st.sidebar:
     st.write(
         """
         - Monday: 5-7pm
-        - Wednesday: 1-4pm
+        - Tuesday: 1-4pm
         """
     )
     st.subheader("Location")
