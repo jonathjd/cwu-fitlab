@@ -3,6 +3,7 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 from markdownlit import mdlit
+from database import fetch_example_data
 
 st.set_page_config(
     page_title="Client Dashboard",
@@ -11,7 +12,7 @@ st.set_page_config(
 
 # fetches data from github
 @st.cache
-def fetch_data(url):
+def fetch_nhanes_data(url):
     df = pd.read_csv(url)
     return df
 
@@ -22,7 +23,7 @@ def subset_data(df):
     df_vo2 = df_vo2[df_vo2['CVDESVO2'] < 90]
     return df_vo2
 
-df = fetch_data('https://raw.githubusercontent.com/jonathjd/cwu-fitlab/main/data/processed/nhanes_merged.csv')
+df = fetch_nhanes_data('https://raw.githubusercontent.com/jonathjd/cwu-fitlab/main/data/processed/nhanes_merged.csv')
 df_vo2 = subset_data(df)
 
 ## Helper Methods ##
@@ -174,6 +175,9 @@ with st.sidebar:
         '<img src="https://github.com/jonathjd/cwu-fitlab/blob/main/img/cwu-long.png?raw=true" alt="0" style="width: 304px;margin-top: -400px;">',
         unsafe_allow_html=True
     )
+
+    client = st.text_input(label="Enter client ID", type="password")
+
     mdlit (
         """Check out our [calendar](https://calendly.com/cwu-fitlab/assessment) to schedule an assessment or come to [red]Heath 
         Sciences 117[/red] during open hours! 
@@ -183,8 +187,8 @@ with st.sidebar:
     st.subheader("Hours of Operation")
     st.write(
         """
-        - Monday: 5-7pm
-        - Tuesday: 1-4pm
+        - Monday: 4-7pm
+        - Tuesday: 2-4pm
         """
     )
     st.subheader("Location")
@@ -225,4 +229,5 @@ with l_hist:
 with r_hist:
     plot_vo2_histogram(c_age, c_vo2, c_gender)
 
+fetch_example_data("JD01171996")
 ## BF% ##

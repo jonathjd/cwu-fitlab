@@ -64,19 +64,3 @@ if check_password():
         enter_client_vars(d, client_identifier, age, height, weight, rest_hr, sys, dias, caliper, tank, vo2)
         st.balloons()
         st.success("Thanks for the data!")
-
-# create a ref to the example login
-# example_login = db.collection("admin").document("login")
-
-# example = example_login.get()
-
-# st.write(f"The document is: ", example.id)
-# st.write(f"The contents are: {example.to_dict()}")
-
-
-
-# admin_ref = db.collection("admin")
-
-# for doc in admin_ref.stream():
-#     st.write("The id is: ", doc.id)
-#     st.write("The contents are: ", doc.to_dict())
