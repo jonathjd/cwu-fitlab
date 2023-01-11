@@ -23,20 +23,6 @@ def get_admin_password():
     password = doc.to_dict()["password"]
     return password
 
-# def enter_client_vars(date, client_id, age, height, weight, rest_hr, sys, dias, caliper, tank, vo2):
-#         doc_ref = db.collection("clients").document(date).collection("data").document(client_id)
-#         doc_ref.set({
-#             "age": age,
-#             "height": height,
-#             "weight": weight,
-#             "rest_hr": rest_hr,
-#             "sys": sys,
-#             "dias": dias,
-#             "skinfold": caliper,
-#             "hydrostatic": tank,
-#             "vo2": vo2
-#         }, merge=True)
-
 def enter_client_vars(date, client_id, age, height, weight, rest_hr, sys, dias, caliper, tank, vo2):
         doc_ref = db.collection("clients").document(client_id).collection("data").document(date)
         doc_ref.set({
