@@ -23,7 +23,7 @@ def get_admin_password():
     password = doc.to_dict()["password"]
     return password
 
-def enter_client_vars(date, client_id, age, height, weight, rest_hr, sys, dias, caliper, tank, vo2):
+def enter_client_vars(date, client_id, age, height, weight, rest_hr, sys, dias, caliper, gold_skinfold, vo2, assessment, vo2_assess, sit_reach, alt_method):
         doc_ref = db.collection("clients").document(client_id).collection("data").document(date)
         doc_ref.set({
             "age": age,
@@ -33,38 +33,41 @@ def enter_client_vars(date, client_id, age, height, weight, rest_hr, sys, dias, 
             "sys": sys,
             "dias": dias,
             "skinfold": caliper,
-            "hydrostatic": tank,
-            "vo2": vo2
+            "gold_skinfold": gold_skinfold,
+            "alt_method": alt_method,
+            "vo2": vo2,
+            "sit_reach": sit_reach,
+            "assessment": assessment,
+            "vo2_assess": vo2_assess
         }, merge=True)
 
-def fetch_example_data(client_id):
+def client_bool(client_id):
+    if client_id == "":
+        return False
+
     doc_ref = db.collection("clients").document(client_id).collection("data")
+    val_ref = doc_ref.get()
+    if val_ref == []:
+        return False
+    return True
+
+def fetch_client_data(client_id):
+    if client_id == "":
+        return 
+
+    doc_ref = db.collection("clients").document(client_id).collection("data")
+    val_ref = doc_ref.get()
+
+    if val_ref == []:
+        st.error("Client not found")
+        return 
+
     dates = []
-    val_ref = doc_ref.stream()
     for doc in val_ref:
         dates.append(doc.id)
-        st.write("The id is: ", doc.id)
-        st.write("The contents are: ", doc.to_dict())
-
     day = st.selectbox(
         label="Appointment Date",
         options=dates
     )
-    client_ref = doc_ref.document(day).get().to_dict()
-    st.write(client_ref['age'])
-
-# create a ref to the example login
-# example_login = db.collection("admin").document("login")
-
-# example = example_login.get()
-
-# st.write(f"The document is: ", example.id)
-# st.write(f"The contents are: {example.to_dict()}")
-
-
-
-# admin_ref = db.collection("admin")
-
-# for doc in admin_ref.stream():
-#     st.write("The id is: ", doc.id)
-#     st.write("The contents are: ", doc.to_dict())
+    client_dict = doc_ref.document(day).get().to_dict()
+    return client_dict

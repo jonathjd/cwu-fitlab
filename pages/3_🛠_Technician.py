@@ -47,20 +47,36 @@ if check_password():
     with st.expander("Input client data"):
         with st.form("Data"):
             d = str(datetime.date.today())
-            client_identifier = st.text_input("Client ID (initials + birthday e.g. JD01171996)")
+            client_identifier = st.text_input("Client ID (initials + birthday e.g. EX01171996)")
+            assessment = st.radio(
+                label="Select assessment type", 
+                options=('Full fitness assessment', "Body composition only"),
+                horizontal=True
+            )
             age = st.text_input("Age")
             height = st.text_input("Height (in)")
             weight = st.text_input("Weight (lbs)")
-            rest_hr = st.text_input("Resting heart rate")
-            sys = st.text_input("Systolic blood pressure")
-            dias = st.text_input("Diastolic blood pressure")
+            rest_hr = st.text_input("Resting heart rate (bpm)")
+            sys = st.text_input("Systolic blood pressure (mmHg)")
+            dias = st.text_input("Diastolic blood pressure (mmHg)")
             caliper = st.text_input("Estimated body fat % (skin fold)")
-            tank = st.text_input("Estimated body fat % (hydrostatic)")
-            vo2 = st.text_input("Estimated VO2max")
+            alt_method = st.radio(
+                label="Bod pod or hydrostatic weighing?", 
+                options=('Bod pod', "Hydrostatic"),
+                horizontal=True
+            )
+            gold_skinfold = st.text_input("Estimated body fat % (bod pod/hydrostatic)")
+            vo2 = st.text_input("Estimated VO2max (ml/kg/min *leave blank if body composition only)")
+            vo2_assess = st.radio(
+                label="YMCA or Queens College?", 
+                options=('YMCA', "Queens College Step Test"),
+                horizontal=True
+            )
+            sit_reach = st.text_input("Sit and Reach (cm)")
             st.warning("Please make sure these values are correct before submitting", icon="⚠️")
             sub = st.form_submit_button("Submit")
 
     if sub:
-        enter_client_vars(d, client_identifier, age, height, weight, rest_hr, sys, dias, caliper, tank, vo2)
+        enter_client_vars(d, client_identifier, age, height, weight, rest_hr, sys, dias, caliper, gold_skinfold, vo2, assessment, vo2_assess, sit_reach, alt_method)
         st.balloons()
         st.success("Thanks for the data!")

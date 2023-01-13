@@ -3,11 +3,21 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 from markdownlit import mdlit
-from database import fetch_example_data
+from database import fetch_client_data, client_bool
+from streamlit_extras.metric_cards import style_metric_cards
+from streamlit_extras.colored_header import colored_header
 
 st.set_page_config(
     page_title="Client Dashboard",
     layout='wide'
+)
+
+# Styles metric cards
+style_metric_cards(
+    border_left_color="#ffe9e9",
+    border_size_px=1.2,
+    border_radius_px=10,
+    border_color="#000000"
 )
 
 # fetches data from github
@@ -176,7 +186,9 @@ with st.sidebar:
         unsafe_allow_html=True
     )
 
-    client = st.text_input(label="Enter client ID", type="password")
+    client = st.text_input(label="Enter Client ID", placeholder="e.g. EX01171996")
+    if client_bool(client):
+        st.success("Welcome!")
 
     mdlit (
         """Check out our [calendar](https://calendly.com/cwu-fitlab/assessment) to schedule an assessment or come to [red]Heath 
@@ -209,10 +221,37 @@ st.markdown(
     Welcome to the Fitlab's Client Dashboard! Here you can input your results from your
     recent fitness assessment and see how your measurements rank amongst similar individuals.
     You also will be able to observe your growth over time if you are a repeat 
-    client (**coming soon!**). These normative charts were created from [NHANES](https://wwwn.cdc.gov/nchs/nhanes/continuousnhanes/overviewexam.aspx?BeginYear=1999)
+    client. These normative charts were created from [NHANES](https://wwwn.cdc.gov/nchs/nhanes/continuousnhanes/overviewexam.aspx?BeginYear=1999)
     data ranging from 1999-2003.
     """
 )
+
+###### Client data ######
+if client_bool(client):
+    data = fetch_client_data(client)
+    if client == "EX01171996":
+        st.info("This is an example of what your dashboard could look like!")
+
+    colored_header(
+        label="Welcome to your client dashboard",
+        color_name= "red-70",
+        description="Below you'll be able to see your data from your previous Fitlab visits."
+    )
+    # metric cards
+    col1a, col2a, col3a = st.columns(3)
+    col1b, col2b, col3b = st.columns(3)
+    col1c, col2c, col3c = st.columns(3)
+    col1a.metric(label="Age", value=data["age"])
+    col2a.metric(label="Height (in)", value=data["height"])
+    col3a.metric(label="Weight (lbs)", value=data["weight"])
+    col1b.metric(label="Resting Heart Rate (BPM)", value=data["rest_hr"])
+    col2b.metric(label="Systolic (mmHg)", value=data["sys"])
+    col3b.metric(label="Diastolic (mmHg)", value=data["dias"])    
+    col1c.metric(label="VO2max (ml/kg/min)", value=data["vo2"])
+    col2c.metric(label="Body fat % (Hydrostatic)", value=data["gold_skinfold"])
+    col3c.metric(label="Body fat % (Skinfold)", value=data["skinfold"])
+
+    # line chart for progress over time
 
 ## VO2 ##
 l_hist, r_hist = st.columns([1.2,3])
@@ -229,5 +268,4 @@ with l_hist:
 with r_hist:
     plot_vo2_histogram(c_age, c_vo2, c_gender)
 
-fetch_example_data("JD01171996")
 ## BF% ##
