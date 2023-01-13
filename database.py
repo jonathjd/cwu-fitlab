@@ -23,7 +23,7 @@ def get_admin_password():
     password = doc.to_dict()["password"]
     return password
 
-def enter_client_vars(date, client_id, age, height, weight, rest_hr, sys, dias, caliper, gold_skinfold, vo2, assessment, vo2_assess, sit_reach, alt_method):
+def enter_client_vars(date, client_id, age, height, weight, rest_hr, sys, dias, caliper, gold_skinfold, vo2, assessment, vo2_assess, sit_reach, alt_method, push_up):
         doc_ref = db.collection("clients").document(client_id).collection("data").document(date)
         doc_ref.set({
             "age": age,
@@ -38,7 +38,8 @@ def enter_client_vars(date, client_id, age, height, weight, rest_hr, sys, dias, 
             "vo2": vo2,
             "sit_reach": sit_reach,
             "assessment": assessment,
-            "vo2_assess": vo2_assess
+            "vo2_assess": vo2_assess,
+            "push_up": push_up
         }, merge=True)
 
 def client_bool(client_id):

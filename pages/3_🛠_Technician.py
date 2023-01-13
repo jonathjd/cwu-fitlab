@@ -45,9 +45,9 @@ def check_password():
 if check_password():
     st.title("Welcome Technician!")
     with st.expander("Input client data"):
-        with st.form("Data"):
+        with st.form("Data", clear_on_submit=True):
             d = str(datetime.date.today())
-            client_identifier = st.text_input("Client ID (initials + birthday e.g. EX01171996)")
+            client_identifier = st.text_input(label="Client ID (initials + birthday MMDDYYYY)", placeholder="e.g. EX01171996")
             assessment = st.radio(
                 label="Select assessment type", 
                 options=('Full fitness assessment', "Body composition only"),
@@ -66,6 +66,7 @@ if check_password():
                 horizontal=True
             )
             gold_skinfold = st.text_input("Estimated body fat % (bod pod/hydrostatic)")
+            st.info("**Leave the rest of the form blank if body composition only**")
             vo2 = st.text_input("Estimated VO2max (ml/kg/min *leave blank if body composition only)")
             vo2_assess = st.radio(
                 label="YMCA or Queens College?", 
@@ -73,10 +74,11 @@ if check_password():
                 horizontal=True
             )
             sit_reach = st.text_input("Sit and Reach (cm)")
+            push_up = st.text_input("Push ups")
             st.warning("Please make sure these values are correct before submitting", icon="⚠️")
             sub = st.form_submit_button("Submit")
 
     if sub:
-        enter_client_vars(d, client_identifier, age, height, weight, rest_hr, sys, dias, caliper, gold_skinfold, vo2, assessment, vo2_assess, sit_reach, alt_method)
+        enter_client_vars(d, client_identifier, age, height, weight, rest_hr, sys, dias, caliper, gold_skinfold, vo2, assessment, vo2_assess, sit_reach, alt_method, push_up)
         st.balloons()
         st.success("Thanks for the data!")
