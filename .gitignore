@@ -1,2 +1,4 @@
 secrets.toml
 firestore-key.json
+data/.DS_Store
+data/processed/dexa_nhanes.csv
