@@ -22,7 +22,7 @@ style_metric_cards(
 
 # fetches data from github
 @st.cache
-def fetch_nhanes_data(url):
+def fetch_vo2_data(url):
     df = pd.read_csv(url)
     return df
 
@@ -33,7 +33,13 @@ def subset_data(df):
     df_vo2 = df_vo2[df_vo2['CVDESVO2'] < 90]
     return df_vo2
 
-df = fetch_nhanes_data('https://raw.githubusercontent.com/jonathjd/cwu-fitlab/main/data/processed/nhanes_merged.csv')
+@st.cache
+def fetch_bf_data(path):
+    df = pd.read_csv(path)
+    return df
+
+bf = fetch_bf_data('/Users/jdickinson/Documents/PersonalRepos/cwu-fitlab/data/final/dexa_nhanes_cleaned.csv')
+df = fetch_vo2_data('https://raw.githubusercontent.com/jonathjd/cwu-fitlab/main/data/processed/nhanes_merged.csv')
 df_vo2 = subset_data(df)
 
 ## Helper Methods ##
@@ -179,6 +185,9 @@ def plot_vo2_histogram(vo2max, gender):
 
 def describe_vo2(line_placement):
     pass
+
+## body fat figs ##
+
 
 with st.sidebar:
     st.markdown(
