@@ -38,7 +38,7 @@ def fetch_bf_data(path):
     df = pd.read_csv(path)
     return df
 
-bf = fetch_bf_data('/Users/jdickinson/Documents/PersonalRepos/cwu-fitlab/data/final/dexa_nhanes_cleaned.csv')
+#bf = fetch_bf_data('/Users/jdickinson/Documents/PersonalRepos/cwu-fitlab/data/final/dexa_nhanes_cleaned.csv')
 df = fetch_vo2_data('https://raw.githubusercontent.com/jonathjd/cwu-fitlab/main/data/processed/nhanes_merged.csv')
 df_vo2 = subset_data(df)
 
