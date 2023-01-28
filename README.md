@@ -9,6 +9,11 @@ Link to application: https://cwu-fitlab.streamlit.app/
 # How it's Made:
 **Tech Used:** Python (Streamlit), GCP Firestore, Some injected HTML and CSS (lol)
 
+
+
+![alt-text](https://img.shields.io/badge/Google_Cloud-4285F4?style=for-the-badge&logo=google-cloud&logoColor=white)
+
+
 Fitlab is a great culminating experience for undergraduate students at CWU, however, it has always been plagued with scheduling issues, waning participation rates, and a subpar client experience with regard to data access. There are a few things that we've found increased participation rates quarter after quarter that being ease of scheduling (no going back and forth over email), as well as being able to track client progress over time. These were the two main issues that this application was aiming to solve. Scheduling, by providing a dedicated calendly link on the sidebar of the home page with all available times, and tracking client progress by allowing the clients to access their results from past visits via a dashboard on the Dasboard page.
 
 Streamlit was for the front end for rapid development time and ease of use. GCP firestore was used for the database because of it's NoSQL schema, and ease of use for the GUI. This would allow students to be rapidly training on how to manaully remove erroneous data or client information if need be. Another reason Streamlit was used is for the easy deployment via Streamlit's hosting services, although Heroku and GCP were also considered for hosting.
