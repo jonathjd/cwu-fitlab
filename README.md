@@ -4,7 +4,7 @@ Cwu-Fitlab is a full stack web application created for the upper level practicum
 
 Link to application: https://cwu-fitlab.streamlit.app/
 
-![Screen Shot 2023-01-28 at 12 20 05 PM](https://user-images.githubusercontent.com/66283742/215289120-995e29ea-7c99-498e-bfe5-c02ba4fe67bb.png)
+![fitlab-img](https://user-images.githubusercontent.com/66283742/215290444-fe8bf3c0-a421-4cca-bdda-af77c0356243.png)
 
 # How it's Made:
 **Tech Used:** Python (Streamlit), GCP Firestore, Some injected HTML and CSS (lol)
