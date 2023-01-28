@@ -33,12 +33,6 @@ def subset_data(df):
     df_vo2 = df_vo2[df_vo2['CVDESVO2'] < 90]
     return df_vo2
 
-@st.cache
-def fetch_bf_data(path):
-    df = pd.read_csv(path)
-    return df
-
-#bf = fetch_bf_data('/Users/jdickinson/Documents/PersonalRepos/cwu-fitlab/data/final/dexa_nhanes_cleaned.csv')
 df = fetch_vo2_data('https://raw.githubusercontent.com/jonathjd/cwu-fitlab/main/data/processed/nhanes_merged.csv')
 df_vo2 = subset_data(df)
 
@@ -237,7 +231,7 @@ st.markdown(
 
 ###### Client data ######
 if client_bool(client):
-    data = fetch_client_data(client)
+    data, dates = fetch_client_data(client)
     if client == "EX01171996":
         st.info("This is an example of what your dashboard could look like!")
 

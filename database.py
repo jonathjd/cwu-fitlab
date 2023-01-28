@@ -2,6 +2,7 @@ from google.cloud import firestore
 import json
 import streamlit as st
 from google.oauth2 import service_account
+import pandas as pd
 
 key_dict = json.loads(st.secrets["textkey"])
 creds = service_account.Credentials.from_service_account_info(key_dict)
@@ -67,4 +68,13 @@ def fetch_client_data(client_id):
         options=dates
     )
     client_dict = doc_ref.document(day).get().to_dict()
-    return client_dict
+    df = pd.DataFrame()
+
+    for day in dates:
+        doc = doc_ref.document(day).get().to_dict()
+        df = df.append(doc, ignore_index=True)
+
+    st.write(df)
+
+
+    return client_dict, dates
