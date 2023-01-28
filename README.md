@@ -9,7 +9,7 @@ Link to application: https://cwu-fitlab.streamlit.app/
 # How it's Made:
 **Tech Used:** Python (Streamlit), GCP Firestore, Some injected HTML and CSS (lol)
 
-![alt-text](http://ForTheBadge.com/images/badges/made-with-python.svg](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![alt-text](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![alt-text](https://img.shields.io/badge/HTML-239120?style=for-the-badge&logo=html5&logoColor=white)
 ![alt-text](https://img.shields.io/badge/CSS-239120?&style=for-the-badge&logo=css3&logoColor=white)
 ![alt-text](https://img.shields.io/badge/Google_Cloud-4285F4?style=for-the-badge&logo=google-cloud&logoColor=white)
