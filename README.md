@@ -21,4 +21,6 @@ Another optimization that is currently under development is the fetching of the 
 
 # Lessons Learned
 
-A big lesson that I learned was how important it is to plan out the db schema before implementation of the database backend. Keeping in mind scaling the application is critical so that refactoring is kept to a minimum. Another lesson learned was that this is a deployed application and that downtime must be minimized so that the user experience is seamless. Finally, importing helper functions from another script makes debugging much easier down the road.
+1. A big lesson that I learned was how important it is to plan out the db schema before implementation of the database backend. Keeping in mind scaling the application is critical so that refactoring is kept to a minimum. 
+2. Another lesson learned was that this is a deployed application and that downtime must be minimized so that the user experience is seamless. 
+3. Finally, importing helper functions from another script makes debugging much easier down the road.
