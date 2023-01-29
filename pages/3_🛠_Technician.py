@@ -46,8 +46,17 @@ if check_password():
     st.title("Welcome Technician!")
     with st.expander("Input client data"):
         with st.form("Data", clear_on_submit=True):
-            d = str(datetime.date.today())
             client_identifier = st.text_input(label="Client ID (initials + birthday MMDDYYYY)", placeholder="e.g. EX01171996")
+            d = st.date_input(
+                label="Visit Date :date:",
+                value=datetime.date.today()
+                )
+            d = str(d)
+            sex = st.radio(
+                label='Enter client sex',
+                options=('M', 'F'),
+                horizontal=True
+            )
             assessment = st.radio(
                 label="Select assessment type", 
                 options=('Full fitness assessment', "Body composition only"),
@@ -67,7 +76,7 @@ if check_password():
             )
             gold_skinfold = st.text_input("Estimated body fat % (bod pod/hydrostatic)")
             st.info("**Leave the rest of the form blank if body composition only**")
-            vo2 = st.text_input("Estimated VO2max (ml/kg/min *leave blank if body composition only)")
+            vo2 = st.text_input("Estimated VO2max (ml/kg/min)")
             vo2_assess = st.radio(
                 label="YMCA or Queens College?", 
                 options=('YMCA', "Queens College Step Test"),
@@ -75,10 +84,15 @@ if check_password():
             )
             sit_reach = st.text_input("Sit and Reach (cm)")
             push_up = st.text_input("Push ups")
+            push_up_form = st.radio(
+                label="Were the push ups performed on the knees?",
+                options=('Yes', 'No'),
+                horizontal=True
+            )
             st.warning("Please make sure these values are correct before submitting", icon="⚠️")
             sub = st.form_submit_button("Submit")
 
     if sub:
-        enter_client_vars(d, client_identifier, age, height, weight, rest_hr, sys, dias, caliper, gold_skinfold, vo2, assessment, vo2_assess, sit_reach, alt_method, push_up)
+        enter_client_vars(d, client_identifier, age, height, weight, rest_hr, sys, dias, caliper, gold_skinfold, vo2, assessment, vo2_assess, sit_reach, alt_method, push_up, sex, push_up_form)
         st.balloons()
         st.success("Thanks for the data!")
