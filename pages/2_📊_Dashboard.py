@@ -252,28 +252,6 @@ with st.expander('Musclular Fitness'):
     plot_push_ups(data)
     plot_sit_reach(data)
 
-#     colored_header(
-#         label="Welcome to your client dashboard",
-#         color_name= "red-70",
-#         description="Below you'll be able to see your data from your previous Fitlab visits."
-#     )
-    # metric cards
-    # col1a, col2a, col3a = st.columns(3)
-    # col1b, col2b, col3b = st.columns(3)
-    # col1c, col2c, col3c = st.columns(3)
-    # col1d, col2d, col3d = st.columns(3)
-    # col1a.metric(label="Age", value=data["age"])
-    # col2a.metric(label="Height (in)", value=data["height"])
-    # col3a.metric(label="Weight (lbs)", value=data["weight"])
-    # col1b.metric(label="Resting Heart Rate (BPM)", value=data["rest_hr"])
-    # col2b.metric(label="Systolic (mmHg)", value=data["sys"])
-    # col3b.metric(label="Diastolic (mmHg)", value=data["dias"])
-    # col1c.metric(label="VO2max (ml/kg/min)", value=data["vo2"])
-    # col2c.metric(label="Body fat % (Hydrostatic)", value=data["gold_skinfold"])
-    # col3c.metric(label="Body fat % (Skinfold)", value=data["skinfold"])
-    # col1d.metric(label="Sit and Reach", value=data["sit_reach"])
-    # col2d.metric(label="Push ups", value=data["push_up"])
-
 ## VO2 ##
 with st.expander("Normative values for VO2max"):
     l_hist, r_hist = st.columns([1.2,3])
