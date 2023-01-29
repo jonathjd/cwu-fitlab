@@ -3,7 +3,8 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 from markdownlit import mdlit
-from database import fetch_client_data, client_bool
+from database import *
+from plots import *
 from streamlit_extras.metric_cards import style_metric_cards
 from streamlit_extras.colored_header import colored_header
 
@@ -169,19 +170,9 @@ def plot_vo2_histogram(vo2max, gender):
             arrowhead=2,
             showarrow=True
         )
-    fig.update_layout(
-    font=dict(
-        size=18,  # Set the font size here
-    )
-)
+    fig.update_layout(font=dict(size=18))
 
     st.plotly_chart(fig, use_container_width=True)
-
-def describe_vo2(line_placement):
-    pass
-
-## body fat figs ##
-
 
 with st.sidebar:
     st.markdown(
@@ -230,32 +221,58 @@ st.markdown(
 )
 
 ###### Client data ######
-if client_bool(client):
-    data, dates = fetch_client_data(client)
-    if client == "EX01171996":
-        st.info("This is an example of what your dashboard could look like!")
+if client_bool(client) is False:
+    st.info("This is an example of what your dashboard could look like!")
+    data = example_data()
 
-    colored_header(
-        label="Welcome to your client dashboard",
-        color_name= "red-70",
-        description="Below you'll be able to see your data from your previous Fitlab visits."
-    )
+if client_bool(client):
+    data = fetch_client_data(client)
+
+colored_header(
+    label="Welcome to your client dashboard",
+    color_name= "red-70",
+    description="Client Dashboard"
+)
+col1, col2, col3, col4 = st.columns(4)
+col1.metric(label='Age', value=data['Age'].max())
+col2.metric(label='Height',value=data['Height (in)'].max())
+col3.metric(label='Number of Visits', value=len(data))
+col4.metric(label='Last Visit', value=str(data['Visit Date'].max())[0:10])
+with st.expander('Resting Measures'):
+    plot_rhr(data)
+    plot_bp(data)
+
+with st.expander('Body Composition'):
+    plot_bf(data)
+
+with st.expander('Cardiorespiratory'):
+    plot_vo2(data)
+
+with st.expander('Musclular Fitness'):
+    plot_push_ups(data)
+    plot_sit_reach(data)
+
+#     colored_header(
+#         label="Welcome to your client dashboard",
+#         color_name= "red-70",
+#         description="Below you'll be able to see your data from your previous Fitlab visits."
+#     )
     # metric cards
-    col1a, col2a, col3a = st.columns(3)
-    col1b, col2b, col3b = st.columns(3)
-    col1c, col2c, col3c = st.columns(3)
-    col1d, col2d, col3d = st.columns(3)
-    col1a.metric(label="Age", value=data["age"])
-    col2a.metric(label="Height (in)", value=data["height"])
-    col3a.metric(label="Weight (lbs)", value=data["weight"])
-    col1b.metric(label="Resting Heart Rate (BPM)", value=data["rest_hr"])
-    col2b.metric(label="Systolic (mmHg)", value=data["sys"])
-    col3b.metric(label="Diastolic (mmHg)", value=data["dias"])
-    col1c.metric(label="VO2max (ml/kg/min)", value=data["vo2"])
-    col2c.metric(label="Body fat % (Hydrostatic)", value=data["gold_skinfold"])
-    col3c.metric(label="Body fat % (Skinfold)", value=data["skinfold"])
-    col1d.metric(label="Sit and Reach", value=data["sit_reach"])
-    col2d.metric(label="Push ups", value=data["push_up"])
+    # col1a, col2a, col3a = st.columns(3)
+    # col1b, col2b, col3b = st.columns(3)
+    # col1c, col2c, col3c = st.columns(3)
+    # col1d, col2d, col3d = st.columns(3)
+    # col1a.metric(label="Age", value=data["age"])
+    # col2a.metric(label="Height (in)", value=data["height"])
+    # col3a.metric(label="Weight (lbs)", value=data["weight"])
+    # col1b.metric(label="Resting Heart Rate (BPM)", value=data["rest_hr"])
+    # col2b.metric(label="Systolic (mmHg)", value=data["sys"])
+    # col3b.metric(label="Diastolic (mmHg)", value=data["dias"])
+    # col1c.metric(label="VO2max (ml/kg/min)", value=data["vo2"])
+    # col2c.metric(label="Body fat % (Hydrostatic)", value=data["gold_skinfold"])
+    # col3c.metric(label="Body fat % (Skinfold)", value=data["skinfold"])
+    # col1d.metric(label="Sit and Reach", value=data["sit_reach"])
+    # col2d.metric(label="Push ups", value=data["push_up"])
 
 ## VO2 ##
 with st.expander("Normative values for VO2max"):
