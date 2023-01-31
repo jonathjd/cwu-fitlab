@@ -39,7 +39,7 @@ def enter_client_vars(date, client_id, age, height, weight, rest_hr, sys, dias, 
             "assessment": assessment,
             "vo2_assess": vo2_assess,
             "push_up": push_up,
-            "push_up_form": push_up_form
+            "push_up_form": push_up_form,
         }, merge=True)
 
 def client_bool(client_id):
