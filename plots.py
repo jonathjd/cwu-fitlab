@@ -4,6 +4,7 @@ import plotly.express as px
 import plotly.graph_objects as go
 import streamlit as st
 
+# Example data for example plots
 def example_data():
     vo2_assess = ['YMCA', 'YMCA', 'YMCA', 'Queens College Step Test', 'Queens College Step Test']
     push_up = [18, 19, 22, 25, 30]
@@ -268,14 +269,68 @@ def plot_bf(df):
     return
 
 def plot_bp(df):
-    fig = px.line(
-        df, 
-        x='Visit Date', 
-        y=['Systolic BP (mmHg)', 'Diastolic BP (mmHg)'],
-        markers=True,
-        template='simple_white',
+
+    fig = go.Figure()
+
+    fig.add_trace(go.Scatter( # Systolic data
+        x=df['Visit Date'],
+        y=df['Systolic BP (mmHg)'],
+        mode='lines+markers',
+        line=dict(shape='linear', color='#FF3F3F'),
+        marker=dict(size=14,
+        line=dict(width=1.1)
+        )))
+
+    fig.add_trace(go.Scatter( # Diastolic data
+        x=df['Visit Date'],
+        y=df['Diastolic BP (mmHg)'],
+        mode='lines+markers',
+        line=dict(shape='linear', color='#FF3F3F'),
+        marker=dict(size=14,
+        line=dict(width=1.1)
+        )))
+
+    fig.update_layout(
+        xaxis=dict(
+            showline=True,
+            showgrid=False,
+            showticklabels=True,
+            linewidth=3,
+            ticks='outside',
+            tickwidth=2,
+            tickcolor='black',
+            tickfont=dict(
+                family='Arial',
+                size=12,
+                color='black',
+            ),
+            title='Visit Date'
+        ),
+        yaxis=dict(
+            showgrid=True,
+            linewidth=3,
+            showline=True,
+            showticklabels=True,
+            ticks='outside',
+            ticklen=4,
+            tickwidth=2,
+            tickcolor='black',
+            tickfont=dict(
+                family='Arial',
+                size=12,
+                color='black'
+            ),
+            title='Systolic & Diastolic BP (mmHg)'
+        ),
+        autosize=False,
+        margin=dict(
+            autoexpand=False,
+            l=100,
+            r=20,
+            t=110,
+        ),
+        plot_bgcolor='white'
         )
-    fig.update_traces(line_width=2.1)
     st.plotly_chart(fig, use_container_width=True)
     return
 
