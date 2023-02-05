@@ -111,6 +111,19 @@ def plot_vo2(df):
         marker=dict(size=14,
         line=dict(width=1.1)
         )))
+
+    fig.update_traces(
+        hovertemplate='Visit Date: %{x} <br>VO2Max: %{y} ml/kg/min', 
+        hoverlabel = dict(
+            bgcolor = '#ffe9e9', 
+            bordercolor='black', 
+            font=dict(
+                color='black',
+                family='Arial',
+                size=14
+            )
+
+    ))
         
     fig.update_layout(
         xaxis=dict(
@@ -163,11 +176,25 @@ def plot_push_ups(df):
         x=df['Visit Date'],
         y=df['Push Ups'],
         mode='lines+markers',
+        name='Your Visit',
         line=dict(shape='linear', color='#FF3F3F'),
         marker=dict(size=14,
         line=dict(width=1.1)
         )))
         
+    fig.update_traces(
+        hovertemplate='Visit Date: %{x} <br>Push Ups: %{y}', 
+        hoverlabel = dict(
+            bgcolor = '#ffe9e9', 
+            bordercolor='black', 
+            font=dict(
+                color='black',
+                family='Arial',
+                size=14
+            )
+
+    ))
+
     fig.update_layout(
         xaxis=dict(
             showline=True,
@@ -223,6 +250,19 @@ def plot_bf(df):
         marker=dict(size=14,
         line=dict(width=1.1)
         )))
+
+    fig.update_traces(
+        hovertemplate='Visit Date: %{x} <br>Body fat: %{y}%', 
+        hoverlabel = dict(
+            bgcolor = '#ffe9e9', 
+            bordercolor='black', 
+            font=dict(
+                color='black',
+                family='Arial',
+                size=14
+            )
+
+    ))
         
     fig.update_layout(
         xaxis=dict(
@@ -290,6 +330,18 @@ def plot_bp(df):
         line=dict(width=1.1)
         )))
 
+    fig.update_traces(
+        hovertemplate='Visit Date: %{x} <br>Blood Pressure: %{y} mmHg', 
+        hoverlabel = dict(
+            bgcolor = '#ffe9e9', 
+            bordercolor='black', 
+            font=dict(
+                color='black',
+                family='Arial',
+                size=14
+            )
+    ))
+
     fig.update_layout(
         xaxis=dict(
             showline=True,
@@ -340,11 +392,25 @@ def plot_rhr(df):
     fig.add_trace(go.Scatter(
         x=df['Visit Date'],
         y=df['Resting Heart Rate (BPM)'],
+        text='Test',
         mode='lines+markers',
+        name='Progress',
         line=dict(shape='linear', color='#FF3F3F'),
-        marker=dict(size=14,
-        line=dict(width=1.1)
+        marker=dict(size=14, line=dict(width=1.1),
         )))
+
+    fig.update_traces(
+        hovertemplate='Visit Date: %{x} <br>Heart Rate: %{y} BPM', 
+        hoverlabel = dict(
+            bgcolor = '#ffe9e9', 
+            bordercolor='black', 
+            font=dict(
+                color='black',
+                family='Arial',
+                size=14
+            )
+
+    ))
         
     fig.update_layout(
         xaxis=dict(
@@ -378,7 +444,7 @@ def plot_rhr(df):
             ),
             title='Resting Heart Rate (BPM)'
         ),
-        autosize=False,
+        autosize=True,
         margin=dict(
             autoexpand=False,
             l=100,
@@ -403,6 +469,18 @@ def plot_sit_reach(df):
         line=dict(width=1.1)
         )))
         
+    fig.update_traces(
+        hovertemplate='Visit Date: %{x} <br>Reach Distance: %{y} cm', 
+        hoverlabel = dict(
+            bgcolor = '#ffe9e9', 
+            bordercolor='black', 
+            font=dict(
+                color='black',
+                family='Arial',
+                size=14
+            )
+    ))
+
     fig.update_layout(
         xaxis=dict(
             showline=True,
