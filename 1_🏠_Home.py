@@ -2,6 +2,7 @@ import streamlit as st
 from streamlit_extras.colored_header import colored_header
 from markdownlit import mdlit
 from annotated_text import annotated_text
+from database import fetch_agg_data
 
 st.set_page_config(
     page_title="CWU Fitlab",

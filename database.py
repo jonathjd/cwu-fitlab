@@ -4,6 +4,9 @@ import streamlit as st
 from google.oauth2 import service_account
 import pandas as pd
 import numpy as np
+import csv
+
+
 
 key_dict = json.loads(st.secrets["textkey"])
 creds = service_account.Credentials.from_service_account_info(key_dict)
@@ -41,6 +44,7 @@ def enter_client_vars(date, client_id, age, height, weight, rest_hr, sys, dias, 
             "push_up": push_up,
             "push_up_form": push_up_form,
         }, merge=True)
+        return
 
 def client_bool(client_id):
     if client_id == "":
@@ -97,5 +101,25 @@ def fetch_client_data(client_id):
 
     # Change dtype of cols
     renamed_df[['Systolic BP (mmHg)', 'Push Ups', 'Resting Heart Rate (BPM)', 'Diastolic BP (mmHg)', 'Body Fat (%)', 'Sit and Reach (cm)', 'Height (in)', 'VO2Max (ml/kg/min)', 'Weight (lbs)']] = renamed_df[['Systolic BP (mmHg)', 'Push Ups', 'Resting Heart Rate (BPM)', 'Diastolic BP (mmHg)', 'Body Fat (%)', 'Sit and Reach (cm)', 'Height (in)', 'VO2Max (ml/kg/min)', 'Weight (lbs)']].apply(pd.to_numeric)
-
     return renamed_df
+
+def fetch_agg_data():
+    collection_ref = db.collection("clients")
+    subcollections = collection_ref.list_documents()
+    client_list = []
+    # Create pandas df to export as csv
+    df = pd.DataFrame()
+
+    # fetch client ID's and append to dict
+    for subcollection in subcollections:
+        client_list.append(subcollection.id)
+
+    for c in client_list:
+        data = fetch_client_data(c)
+        data["Client"] = c
+        df = pd.concat([df, data], axis=0)
+
+    df.index = range(0,len(df))
+
+    return df    
+

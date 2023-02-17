@@ -23,82 +23,7 @@ def example_data():
     example['Visit Date'] = pd.to_datetime(example['Visit Date'])
     return example
 
-def plot_vo2(df):
-    if len(df) == 1:
-        df['VO2Max (ml/kg/min)'] = df['VO2Max (ml/kg/min)'].round() 
-        # Generate fake data
-        fake_data = np.arange(df['VO2Max (ml/kg/min)'].iloc[0], 60)
-        fake_dates = pd.date_range(df['Visit Date'].iloc[0], periods=7)
-        
-        fig = go.Figure()
-
-        fig.add_trace(go.Scatter(
-            x=fake_dates, 
-            y=fake_data,
-            mode='lines+markers',
-            name='Future progress!',
-            line=dict(shape='linear', color='#FF3F3F', dash='dot'),
-            marker=dict(size=12,
-            line=dict(width=1.1)
-            )))
-
-        fig.add_trace(go.Scatter(
-            x=df['Visit Date'],
-            y=df['VO2Max (ml/kg/min)'],
-            mode='lines+markers',
-            name='Your Visit',
-            line=dict(shape='linear', color='black', dash='dot'),
-            marker=dict(size=14,
-            line=dict(width=1.1)
-            )))
-        fig.update_layout(
-            xaxis=dict(
-                showline=True,
-                showgrid=False,
-                showticklabels=True,
-                linewidth=3,
-                ticks='outside',
-                tickwidth=2,
-                tickcolor='black',
-                tickfont=dict(
-                    family='Arial',
-                    size=12,
-                    color='rgb(82, 82, 82)',
-                ),
-                title='Visit Date'
-            ),
-            yaxis=dict(
-                showgrid=True,
-                linewidth=3,
-                showline=True,
-                showticklabels=True,
-                ticks='outside',
-                ticklen=4,
-                tickwidth=2,
-                tickcolor='black',
-                title='VO2Max (ml/kg/min)'
-            ),
-            autosize=False,
-            legend=dict(
-                orientation="h",
-                entrywidth=90,
-                yanchor="bottom",
-                y=1.02,
-                xanchor="right",
-                x=1
-            ),
-            margin=dict(
-                autoexpand=False,
-                l=100,
-                r=20,
-                t=110,
-            ),
-            showlegend=True,
-            plot_bgcolor='white'
-            )
-
-        st.plotly_chart(fig, use_container_width=True)
-        return
+def plot_vo2(df):        
 
     fig = go.Figure()
 
@@ -127,18 +52,18 @@ def plot_vo2(df):
         
     fig.update_layout(
         xaxis=dict(
-            showline=True,
-            showgrid=False,
-            showticklabels=True,
-            linewidth=3,
-            ticks='outside',
-            tickwidth=2,
-            tickcolor='black',
-            tickfont=dict(
-                family='Arial',
-                size=12,
-                color='black',
-            ),
+                showline=True,
+                showgrid=False,
+                showticklabels=True,
+                linewidth=3,
+                ticks='outside',
+                tickwidth=2,
+                tickcolor='black',
+                tickfont=dict(
+                    family='Arial',
+                    size=12,
+                    color='rgb(82, 82, 82)',
+                ),
             title='Visit Date'
         ),
         yaxis=dict(

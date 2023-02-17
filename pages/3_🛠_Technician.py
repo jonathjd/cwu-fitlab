@@ -1,12 +1,13 @@
 import streamlit as st
 from google.cloud import firestore
-from database import get_admin_password, enter_client_vars
+from database import *
 import datetime
 
 st.set_page_config(
     page_title="CWU Admin",
     layout='wide'
 )
+
 
 with st.sidebar:
     st.markdown(
@@ -96,3 +97,24 @@ if check_password():
         enter_client_vars(d, client_identifier, age, height, weight, rest_hr, sys, dias, caliper, gold_skinfold, vo2, assessment, vo2_assess, sit_reach, alt_method, push_up, sex, push_up_form)
         st.balloons()
         st.success("Thanks for the data!")
+
+
+# Fetch client data
+client_data = fetch_agg_data()
+
+@st.cache
+def convert_df(df):    
+    return df.to_csv().encode('utf-8')
+
+data = convert_df(client_data)
+
+preview = st.radio(label="Display Fitlab data?", options=('No', 'Yes'), horizontal=True)
+
+if preview == 'Yes':
+    st.dataframe(data=client_data)
+
+#################################
+#### Download client data as csv
+################################
+st.download_button(label="Download Fitlab Data", data=data, file_name='fitlab_data.csv')
+st.warning("Please use discretion when downloading Fitlab data. This is sensitive information.")
