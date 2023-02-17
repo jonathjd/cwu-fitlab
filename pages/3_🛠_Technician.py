@@ -99,22 +99,22 @@ if check_password():
         st.success("Thanks for the data!")
 
 
-# Fetch client data
-client_data = fetch_agg_data()
+    # Fetch client data
+    client_data = fetch_agg_data()
 
-@st.cache
-def convert_df(df):    
-    return df.to_csv().encode('utf-8')
+    @st.cache
+    def convert_df(df):    
+        return df.to_csv().encode('utf-8')
 
-data = convert_df(client_data)
+    data = convert_df(client_data)
 
-preview = st.radio(label="Display Fitlab data?", options=('No', 'Yes'), horizontal=True)
+    preview = st.radio(label="Display Fitlab data?", options=('No', 'Yes'), horizontal=True)
 
-if preview == 'Yes':
-    st.dataframe(data=client_data)
+    if preview == 'Yes':
+        st.dataframe(data=client_data)
 
-#################################
-#### Download client data as csv
-################################
-st.download_button(label="Download Fitlab Data", data=data, file_name='fitlab_data.csv')
-st.warning("Please use discretion when downloading Fitlab data. This is sensitive information.")
+    #################################
+    #### Download client data as csv
+    ################################
+    st.download_button(label="Download Fitlab Data", data=data, file_name='fitlab_data.csv')
+    st.warning("Please use discretion when downloading Fitlab data. This is sensitive information.")
