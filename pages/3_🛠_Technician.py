@@ -1,5 +1,4 @@
 import streamlit as st
-from google.cloud import firestore
 from database import *
 import datetime
 
