@@ -4,8 +4,6 @@ import streamlit as st
 from google.oauth2 import service_account
 import pandas as pd
 import numpy as np
-import csv
-
 
 key_dict = json.loads(st.secrets["textkey"])
 creds = service_account.Credentials.from_service_account_info(key_dict)
@@ -86,7 +84,7 @@ def fetch_agg_df(client_id):
     df['Date'] = pd.to_datetime(df['Date'])
 
     # Subset cols & rename
-    df_subset = df[['sys', 'gold_skinfold', 'age', 'push_up', 'sit_reach', 'rest_hr', 'height', 'vo2', 'dias', 'weight', 'vo2_assess', 'Date', 'sex']]
+    df_subset = df[['sys', 'gold_skinfold', 'age', 'push_up', 'sit_reach', 'rest_hr', 'height', 'vo2', 'dias', 'weight', 'vo2_assess', 'Date', 'sex', 'alt_method']]
     renamed_df = df_subset.rename(columns={
         'weight': 'Weight (lbs)',
         'vo2_assess': 'VO2 Assessment', 
@@ -100,7 +98,8 @@ def fetch_agg_df(client_id):
         'age': 'Age', 
         'vo2': 'VO2Max (ml/kg/min)', 
         'Date': 'Visit Date',
-        'sex': 'Sex'
+        'sex': 'Sex',
+        'alt_method': 'Alternate Method' 
         }).copy()
 
     # Change dtype of cols
