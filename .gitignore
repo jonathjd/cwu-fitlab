@@ -6,3 +6,6 @@ data/final/dexa_nhanes_cleaned.csv
 firebase-fitlab-key.json
 notebooks/.ipynb_checkpoints
 data/final/fitlab_data.csv
+.ipynb_checkpoints
+test.pdf
+reports

@@ -57,56 +57,6 @@ def client_bool(client_id):
     return True
 
 
-def fetch_agg_df(client_id):
-    if client_id == "":
-        return 
-
-    doc_ref = db.collection("clients").document(client_id).collection("data")
-    val_ref = doc_ref.get()
-
-    if val_ref == []:
-        st.error("Client not found")
-        return 
-
-    dates = []
-    for doc in val_ref:
-        dates.append(doc.id)
-    
-    # make pandas df
-    df = pd.DataFrame()
-    for day in dates:
-        doc = doc_ref.document(day).get().to_dict()
-        df = df.append(doc, ignore_index=True)
-
-    # Clean dataframe
-    # convert dates column to date object
-    df['Date'] = dates
-    df['Date'] = pd.to_datetime(df['Date'])
-
-    # Subset cols & rename
-    df_subset = df[['sys', 'gold_skinfold', 'age', 'push_up', 'sit_reach', 'rest_hr', 'height', 'vo2', 'dias', 'weight', 'vo2_assess', 'Date', 'sex', 'alt_method']]
-    renamed_df = df_subset.rename(columns={
-        'weight': 'Weight (lbs)',
-        'vo2_assess': 'VO2 Assessment', 
-        'push_up': 'Push Ups', 
-        'gold_skinfold': 'Body Fat (%)', 
-        'height': 'Height (in)', 
-        'sys': 'Systolic BP (mmHg)', 
-        'dias': 'Diastolic BP (mmHg)', 
-        'rest_hr': 'Resting Heart Rate (BPM)', 
-        'sit_reach': 'Sit and Reach (cm)', 
-        'age': 'Age', 
-        'vo2': 'VO2Max (ml/kg/min)', 
-        'Date': 'Visit Date',
-        'sex': 'Sex',
-        'alt_method': 'Alternate Method' 
-        }).copy()
-
-    # Change dtype of cols
-    renamed_df[['Systolic BP (mmHg)', 'Push Ups', 'Resting Heart Rate (BPM)', 'Diastolic BP (mmHg)', 'Body Fat (%)', 'Sit and Reach (cm)', 'Height (in)', 'VO2Max (ml/kg/min)', 'Weight (lbs)']] = renamed_df[['Systolic BP (mmHg)', 'Push Ups', 'Resting Heart Rate (BPM)', 'Diastolic BP (mmHg)', 'Body Fat (%)', 'Sit and Reach (cm)', 'Height (in)', 'VO2Max (ml/kg/min)', 'Weight (lbs)']].apply(pd.to_numeric)
-    return renamed_df
-
-
 def fetch_client_data(client_id):
     if client_id == "":
         return 
