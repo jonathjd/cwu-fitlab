@@ -134,7 +134,7 @@ def fetch_client_data(client_id):
     df['Date'] = pd.to_datetime(df['Date'])
 
     # Subset cols & rename
-    df_subset = df[['sys', 'gold_skinfold', 'age', 'push_up', 'sit_reach', 'rest_hr', 'height', 'vo2', 'dias', 'weight', 'vo2_assess', 'Date', 'sex']]
+    df_subset = df[['sys', 'gold_skinfold', 'age', 'push_up', 'sit_reach', 'rest_hr', 'height', 'vo2', 'dias', 'weight', 'vo2_assess', 'Date', 'sex', 'alt_method']]
     renamed_df = df_subset.rename(columns={
         'weight': 'Weight (lbs)',
         'vo2_assess': 'VO2 Assessment', 
@@ -148,7 +148,8 @@ def fetch_client_data(client_id):
         'age': 'Age', 
         'vo2': 'VO2Max (ml/kg/min)', 
         'Date': 'Visit Date',
-        'sex': 'Sex'
+        'sex': 'Sex',
+        'alt_method': 'Alternate Method'
         }).copy()
 
     # Change dtype of cols
