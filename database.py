@@ -104,7 +104,7 @@ def fetch_client_data(client_id):
         }).copy()
 
     # Change dtype of cols
-    renamed_df[['Systolic BP (mmHg)', 'Push Ups', 'Resting Heart Rate (BPM)', 'Diastolic BP (mmHg)', 'Body Fat (%)', 'Sit and Reach (cm)', 'Height (in)', 'VO2Max (ml/kg/min)', 'Weight (lbs)']] = renamed_df[['Systolic BP (mmHg)', 'Push Ups', 'Resting Heart Rate (BPM)', 'Diastolic BP (mmHg)', 'Body Fat (%)', 'Sit and Reach (cm)', 'Height (in)', 'VO2Max (ml/kg/min)', 'Weight (lbs)']].apply(pd.to_numeric)
+    renamed_df[['Systolic BP (mmHg)', 'Push Ups', 'Resting Heart Rate (BPM)', 'Diastolic BP (mmHg)', 'Body Fat (%)', 'Sit and Reach (cm)', 'Height (in)', 'VO2Max (ml/kg/min)', 'Weight (lbs)', 'Bodyfat (Calipers)']] = renamed_df[['Systolic BP (mmHg)', 'Push Ups', 'Resting Heart Rate (BPM)', 'Diastolic BP (mmHg)', 'Body Fat (%)', 'Sit and Reach (cm)', 'Height (in)', 'VO2Max (ml/kg/min)', 'Weight (lbs)', 'Bodyfat (Calipers)']].apply(pd.to_numeric)
     return renamed_df
 
 def fetch_agg_data():
@@ -123,7 +123,10 @@ def fetch_agg_data():
         data["Client"] = c
         df = pd.concat([df, data], axis=0)
 
+    # add index and clean
     df.index = range(0,len(df))
+    df['Absolute Error'] = abs(df['Bodyfat (Calipers)'] - df['Body Fat (%)'])
+    df['Error'] = df['Bodyfat (Calipers)'] - df['Body Fat (%)']
 
     return df    
 

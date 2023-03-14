@@ -1,12 +1,21 @@
 import streamlit as st
 from database import *
 import datetime
+from plots import plot_variance
+from streamlit_extras.metric_cards import style_metric_cards
 
 st.set_page_config(
     page_title="CWU Admin",
     layout='wide'
 )
 
+# Styles metric cards
+style_metric_cards(
+    border_left_color="#ffe9e9",
+    border_size_px=1.2,
+    border_radius_px=10,
+    border_color="#000000"
+)
 
 with st.sidebar:
     st.markdown(
@@ -44,6 +53,18 @@ def check_password():
 
 if check_password():
     st.title("Welcome Technician!")
+
+    client_data = fetch_agg_data()
+    client_data.sort_values(by='Visit Date', inplace=True)
+
+    with st.expander("Skinfold Variance"):
+        col1, col2, col3 = st.columns(3)
+        col1.metric(label='Mean Absolute Variance', value=round(client_data['Absolute Error'].mean(), 2))
+        col2.metric(label='Maximum Variance', value=round(client_data['Absolute Error'].max(), 2))
+        col3.metric(label='Minimum Variance', value=round(client_data['Absolute Error'].min(), 2))
+
+        plot_variance(client_data)
+
     with st.expander("Input client data"):
         with st.form("Data", clear_on_submit=True):
             client_identifier = st.text_input(label="Client ID (initials + birthday MMDDYYYY)", placeholder="e.g. EX01171996")
@@ -97,10 +118,6 @@ if check_password():
         st.balloons()
         st.success("Thanks for the data!")
 
-
-    # Fetch client data
-    client_data = fetch_agg_data()
-
     @st.cache
     def convert_df(df):    
         return df.to_csv().encode('utf-8')
@@ -108,7 +125,6 @@ if check_password():
     data = convert_df(client_data)
 
     preview = st.radio(label="Display Fitlab data?", options=('No', 'Yes'), horizontal=True)
-
     if preview == 'Yes':
         st.dataframe(data=client_data)
 

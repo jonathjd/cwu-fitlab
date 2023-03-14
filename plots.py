@@ -449,3 +449,52 @@ def plot_sit_reach(df):
         )
     st.plotly_chart(fig, use_container_width=True)
     return
+
+
+def plot_variance(df):
+
+    mae = round(df['Absolute Error'].mean(), 2)
+
+    per_day_df = df.groupby(['Visit Date']).mean()
+    per_week_df = df.groupby(pd.Grouper(key='Visit Date', freq='W')).mean()
+
+    data_frames = [per_day_df, per_week_df]
+
+    for i, data_frame in enumerate(data_frames):
+
+        if i == 0:
+            st.subheader('Error per Day')
+        
+        else:
+            st.subheader('Error per Week')
+
+        # Plotly fig
+        fig = px.bar(data_frame, x=data_frame.index, y=data_frame['Error'],
+                    range_y=[-10, 10], template='ggplot2')
+
+        fig.add_hrect(y0=-3.5, y1=3.5, line_width=0, fillcolor="green", opacity=0.2, annotation_text="+-3.5 error")
+
+        fig.update_layout(
+            font_family='Arial'
+        )
+
+        fig.add_annotation(x=data_frame.index.min(), y=10, 
+                        text=f'Mean Absolute Error: {mae}%',
+                        showarrow=False,
+                        bordercolor="#c7c7c7",
+                        borderwidth=2,
+                        borderpad=4,
+                        bgcolor="#FFA4A4",
+        )
+
+        fig.add_annotation(x=data_frame.index.min(), y=8, 
+                        text='Goal 3.5%',
+                        showarrow=False,
+                        bordercolor="#c7c7c7",
+                        borderwidth=2,
+                        borderpad=4,
+                        bgcolor="#81FFB6"
+        )
+
+        st.plotly_chart(fig, use_container_width=True)
+    return
