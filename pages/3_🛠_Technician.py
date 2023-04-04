@@ -67,6 +67,7 @@ if check_password():
 
     with st.expander("Input client data"):
         with st.form("Data", clear_on_submit=True):
+            technician_id = st.text_input(label="Technician ID (initials + quarter + year)", placeholder="e.g. EXQ32023")
             client_identifier = st.text_input(label="Client ID (initials + birthday MMDDYYYY)", placeholder="e.g. EX01171996")
             d = st.date_input(
                 label="Visit Date :date:",
@@ -114,7 +115,7 @@ if check_password():
             sub = st.form_submit_button("Submit")
 
     if sub:
-        enter_client_vars(d, client_identifier, age, height, weight, rest_hr, sys, dias, caliper, gold_skinfold, vo2, assessment, vo2_assess, sit_reach, alt_method, push_up, sex, push_up_form)
+        enter_client_vars(technician_id, d, client_identifier, age, height, weight, rest_hr, sys, dias, caliper, gold_skinfold, vo2, assessment, vo2_assess, sit_reach, alt_method, push_up, sex, push_up_form)
         st.balloons()
         st.success("Thanks for the data!")
 

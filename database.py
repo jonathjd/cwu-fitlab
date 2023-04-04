@@ -23,9 +23,10 @@ def get_admin_password():
     return password
 
 
-def enter_client_vars(date, client_id, age, height, weight, rest_hr, sys, dias, caliper, gold_skinfold, vo2, assessment, vo2_assess, sit_reach, alt_method, push_up, sex, push_up_form):
+def enter_client_vars(technician_id, date, client_id, age, height, weight, rest_hr, sys, dias, caliper, gold_skinfold, vo2, assessment, vo2_assess, sit_reach, alt_method, push_up, sex, push_up_form):
         doc_ref = db.collection("clients").document(client_id).collection("data").document(date)
         doc_ref.set({
+            "technician": technician_id,
             "age": age,
             'sex': sex,
             "height": height,
