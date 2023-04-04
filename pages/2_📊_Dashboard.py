@@ -193,8 +193,8 @@ with st.sidebar:
     st.subheader("Hours of Operation")
     st.write(
         """
-        - Monday: 4-7pm
-        - Tuesday: 2-4pm
+        - Monday: 5-8pm
+        - Wednesday: 5-8pm
         """
     )
     st.subheader("Location")
@@ -264,5 +264,3 @@ with st.expander("Normative values for VO2max"):
             )
     with r_hist:
         plot_vo2_histogram(c_vo2, c_gender)
-
-## BF% ##
