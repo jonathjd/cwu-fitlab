@@ -9,4 +9,4 @@ data/final/fitlab_data.csv
 .ipynb_checkpoints
 test.pdf
 reports
-./notebooks/
+notebooks/.
